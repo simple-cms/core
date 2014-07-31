@@ -85,4 +85,15 @@ abstract class AbstractEloquentRepository {
     return $this->model->with($with);
   }
 
+  public function update($slug, $input)
+  {
+    $model = $this->getFirstBy('slug', $slug);
+
+    $model->fill($input);
+
+    $model->save();
+
+    return $model;
+  }
+
 }
