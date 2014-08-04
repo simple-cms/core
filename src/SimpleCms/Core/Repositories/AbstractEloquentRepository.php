@@ -1,5 +1,7 @@
 <?php namespace SimpleCms\Core\Repositories;
 
+use Str;
+
 /**
  * Our base Eloquent Repository, it provides a bunch of commonly used methods to prevent repeating code.
  *
@@ -83,6 +85,22 @@ abstract class AbstractEloquentRepository {
   public function make(array $with = [])
   {
     return $this->model->with($with);
+  }
+
+  public function store($input)
+  {
+    $model = new $this->model;
+
+    $model->fill($input);
+
+    if (isset($input['slug']))
+    {
+      $model->slug = ($input['slug'] == '') ? Str::Slug($input['title']) : Str::slug($input->slug);
+    }
+
+    $model->save();
+
+    return $model;
   }
 
   public function update($slug, $input)

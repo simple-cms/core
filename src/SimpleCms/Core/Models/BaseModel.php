@@ -33,13 +33,14 @@ class BaseModel extends Model {
    *
    * @param  array $input the input to validate
    * @param  array $rules an array of rules
+   * @param  array $messages an array of rules
    *
    * @return bool
    */
-  public function validate($input, $rules)
+  public function validate(array $input, array $rules, array $messages = [])
   {
     // Here we call our validator and pass it our attributes and rules
-    $validation = Validator::make($input, $rules);
+    $validation = Validator::make($input, $rules, $messages);
 
     // Validation fails
     if ($validation->fails())
