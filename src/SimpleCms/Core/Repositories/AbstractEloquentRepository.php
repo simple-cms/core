@@ -87,7 +87,7 @@ abstract class AbstractEloquentRepository {
     return $this->model->with($with);
   }
 
-  public function store($input)
+  public function store(array $input)
   {
     $model = new $this->model;
 
@@ -103,7 +103,7 @@ abstract class AbstractEloquentRepository {
     return $model;
   }
 
-  public function update($slug, $input)
+  public function update($slug, array $input)
   {
     $model = $this->getFirstBy('slug', $slug);
 
