@@ -103,9 +103,9 @@ abstract class AbstractEloquentRepository {
     return $model;
   }
 
-  public function update($slug, array $input)
+  public function update($id, array $input)
   {
-    $model = $this->getFirstBy('slug', $slug);
+    $model = $this->getById($id);
 
     $model->fill($input);
 
