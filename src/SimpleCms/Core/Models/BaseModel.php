@@ -6,7 +6,7 @@ use Validator;
 class BaseModel extends Model {
 
   /**
-   * Holds any errors associated with the Model
+   * Errors
    *
    * @var Illuminate\Support\MessageBag
    */
