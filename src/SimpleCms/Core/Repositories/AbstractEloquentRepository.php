@@ -17,7 +17,7 @@ abstract class AbstractEloquentRepository {
    */
   public function all()
   {
-    return $this->model->all();
+    return $this->model->orderBy('updated_at', 'DESC')->get();
   }
 
   /**
