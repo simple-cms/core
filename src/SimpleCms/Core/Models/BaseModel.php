@@ -23,7 +23,7 @@ class BaseModel extends Model {
     parent::boot();
 
     // Here we hook into the saving event with a closure
-    static::saving(function($model){
+    static::saving(function($model) {
       return $model->validate($model->getAttributes(), $model::$rules);
     });
   }

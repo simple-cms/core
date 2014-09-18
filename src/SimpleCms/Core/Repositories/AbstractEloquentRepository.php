@@ -27,7 +27,6 @@ abstract class AbstractEloquentRepository {
    * @param string $value
    * @param array $with
    *
-   * @return SimpleCms\Blog\Models\Post
    */
   public function getFirstBy($key, $value, array $with = [])
   {
@@ -54,7 +53,6 @@ abstract class AbstractEloquentRepository {
    * @param int $id
    * @param array $with
    *
-   * @return SimpleCms\Blog\Models\Post
    */
   public function getById($id, array $with = [])
   {
@@ -87,30 +85,68 @@ abstract class AbstractEloquentRepository {
     return $this->model->with($with);
   }
 
+  /**
+   * Handles basic storing of our Model
+   *
+   * @param  array  $input
+   *
+   */
   public function store(array $input)
   {
+    // Instantiate a new Model
     $model = new $this->model;
 
+    // Fill the new Model with our input
     $model->fill($input);
 
+    // Is this Model using slugs?
     if (isset($input['slug']))
     {
+      // If the slug is empty use the title, other wise use the provided slug
       $model->slug = ($input['slug'] == '') ? Str::Slug($input['title']) : Str::slug($input->slug);
     }
 
+    // Attempt to save the model
     $model->save();
 
+    // Return the model
     return $model;
   }
 
+  /**
+   * Handles basic updating of our Model
+   *
+   * @param  [type] $id
+   * @param  array  $input
+   *
+   */
   public function update($id, array $input)
   {
+    // Grab the Model by it's ID
     $model = $this->getById($id);
 
+    // Fill it with the users input
     $model->fill($input);
 
+    // Attempt to save the model
     $model->save();
 
+    // Return the model
+    return $model;
+  }
+
+  /**
+   * Handles basic destruction of our Model
+   *
+   * @param  [type] $id
+   *
+   */
+  public function destroy($id)
+  {
+    // Grab the Model by it's ID
+    $model = $this->getById($id)->destroy($id);
+
+    // Return the model
     return $model;
   }
 
