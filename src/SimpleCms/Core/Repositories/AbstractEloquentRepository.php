@@ -1,6 +1,6 @@
 <?php namespace SimpleCms\Core\Repositories;
 
-use Str;
+use Illuminate\Support\Str;
 
 /**
  * Our base Eloquent Repository, it provides a bunch of commonly used methods to prevent repeating code.

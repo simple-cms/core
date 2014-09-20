@@ -15,7 +15,7 @@
     <meta property='og:image' content='' />
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css">
+    <link rel="stylesheet" href="{{ url() }}/css/bootstrap.min.css">
 
     <style>
       body {
