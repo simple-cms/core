@@ -1,4 +1,4 @@
-<?php namespace SimpleCms\Core\Repositories;
+<?php namespace SimpleCms\Core;
 
 use Illuminate\Support\Str;
 
@@ -103,8 +103,14 @@ abstract class AbstractEloquentRepository {
     if (isset($input['slug']))
     {
       // If the slug is empty use the title, other wise use the provided slug
-      $model->slug = ($input['slug'] == '') ? Str::Slug($input['title']) : Str::slug($input->slug);
+      $model->slug = ($input['slug'] == '') ? Str::Slug($input['title']) : Str::slug($input['slug']);
     }
+
+    // If the meta title is empty use the title, other wise use the provided meta title
+    $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input->meta_title;
+
+    // If the meta description is empty use the excerpt, other wise use the provided meta description
+    $model->meta_description = ($input['meta_description'] == '') ? $input['excerpt'] : $input->meta_description;
 
     // Attempt to save the model
     $model->save();
@@ -128,6 +134,12 @@ abstract class AbstractEloquentRepository {
     // Fill it with the users input
     $model->fill($input);
 
+    // If the meta title is empty use the title, other wise use the provided meta tit
+    $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input['meta_title'];
+
+    // If the meta description is empty use the excerpt, other wise use the provided meta description
+    $model->meta_description = ($input['meta_description'] == '') ? $input['excerpt'] : $input['meta_description'];
+
     // Attempt to save the model
     $model->save();
 
@@ -148,6 +160,31 @@ abstract class AbstractEloquentRepository {
 
     // Return the model
     return $model;
+  }
+
+
+  /**
+   * Returns an array of entities to be used in a relationship <select> dropdown
+   *
+   * @param  string $valueField   the name of the field to be used as text
+   *
+   * @return array
+   */
+  public function getSelectArray($valueField = 'title')
+  {
+    // Grab all of the regions
+    $entities = $this->all();
+
+    // An array to hold our entities
+    $entityArray = ['0' => 'None'];
+
+    // Loop through each entity and add them to an array with the entity ID as a key and the specified field as a value
+    foreach ($entities as $entity) {
+      $entityArray[$entity->id] = $entity->$valueField;
+    }
+
+    //Return the array
+    return $entityArray;
   }
 
 }

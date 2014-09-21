@@ -2,28 +2,27 @@
 
 return [
 
-  // Form Tab headings
+  // Tab headings
   'basics' => 'Basics',
   'seo' => 'SEO',
   'info' => 'Information',
   'help' => 'Help',
   'actions' => 'Actions',
   'preview' => 'Preview',
-  'stats' => 'statistics',
+  'stats' => 'Statistics',
 
-  // Form Fields
+  // Form Fields & Help values
   'slug' => 'Slug',
   'status' => 'Status',
   'author' => 'Author', // TODO - move to user Lang files
   'title' => 'Title',
-  'updated' => 'Last Updated',
   'excerpt' => 'Excerpt',
   'content' => 'Content',
-  'created_at' => 'Created',
-  'updated_at' => 'Updated',
+  'created' => 'Created',
+  'updated' => 'Updated',
 
   // CRUD
-  'create' => 'Add',
+  'create' => 'Create',
   'edit' => 'Edit',
   'update' => 'Update',
   'destroy' => 'Delete',
@@ -36,4 +35,6 @@ return [
 
   'dashboard' => 'Dashboard',
   'list' => 'List',
+  'save' => 'Save',
+
 ];

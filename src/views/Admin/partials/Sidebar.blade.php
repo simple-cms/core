@@ -24,7 +24,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ route('control.post.index') }}"><i class="fa fa-angle-double-right"></i> Posts</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+          <li><a href="{{ route('control.category.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
         </ul>
       </li>
       <li>

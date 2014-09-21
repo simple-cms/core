@@ -1,4 +1,4 @@
-<?php namespace SimpleCms\Core\Controllers;
+<?php namespace SimpleCms\Core;
 
 use Illuminate\Routing\Controller;
 

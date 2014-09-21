@@ -1,4 +1,4 @@
-<?php namespace SimpleCms\Core\Models;
+<?php namespace SimpleCms\Core;
 
 use Illuminate\Database\Eloquent\Model;
 // use Validator;
