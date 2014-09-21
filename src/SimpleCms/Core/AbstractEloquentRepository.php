@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 /**
  * Our base Eloquent Repository, it provides a bunch of commonly used methods to prevent repeating code.
  *
- * Very HEAVILY based work by Philip Brown (phil.ipbrown.com) - http://culttt.com/2014/03/17/eloquent-tricks-better-repositories/
+ * Heavily inspired by the work by Philip Brown (phil.ipbrown.com) - http://culttt.com/2014/03/17/eloquent-tricks-better-repositories/
  *
  */
 abstract class AbstractEloquentRepository {
@@ -13,20 +13,38 @@ abstract class AbstractEloquentRepository {
   /**
    * Return all entities
    *
+   * @param array $with     an array of relationships to return with the entities
+   * @param array $orderBy  format: ['coumn', 'order']
+   *
    * @return Illuminate\Database\Eloquent\Collection
    */
-  public function all()
+  public function all(array $with = [], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
   {
-    return $this->model->orderBy('updated_at', 'DESC')->get();
+    return $this->make($with)->orderBy($orderBy['column'], $orderBy['order'])->get();
   }
 
   /**
-   * Find a single entity by a key value
+   * Returns paginated entities
    *
-   * @param string $key
-   * @param string $value
-   * @param array $with
+   * @param int $perPage    the number of entities per page
+   * @param array $with     an array of relationships to return with the dataset
+   * @param array $orderBy  format: ['coumn', 'order']
    *
+   * @return Illuminate\Pagination\Paginator
+   */
+  public function paginate($perPage = '15', array $with =[], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
+  {
+    return $this->model->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage);
+  }
+
+  /**
+   * Search for a single entity by a key and value
+   *
+   * @param string $key     the column name to search
+   * @param string $value   the value to search for
+   * @param array $with     an array of relationships to return with the dataset
+   *
+   * @return Illuminate\Database\Eloquent\Collection
    */
   public function getFirstBy($key, $value, array $with = [])
   {
@@ -36,13 +54,14 @@ abstract class AbstractEloquentRepository {
   /**
    * Find entities by key value
    *
-   * @param string $key
-   * @param string $value
-   * @param array $with
+   * @param string $key     the column name to search
+   * @param string $value   the value to search for
+   * @param array $with     an array of relationships to return with the dataset
+   * @param array $orderBy  format: ['coumn', 'order']
    *
    * @return Illuminate\Database\Eloquent\Collection
    */
-  public function getManyBy($key, $value, array $with = [])
+  public function getManyBy($key, $value, array $with = [], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
   {
     return $this->make($with)->where($key, '=', $value)->get();
   }
@@ -50,8 +69,8 @@ abstract class AbstractEloquentRepository {
   /**
    * Find an entity by it's ID
    *
-   * @param int $id
-   * @param array $with
+   * @param int $id       the entity ID
+   * @param array $with   an array of relationships to return with the dataset
    *
    */
   public function getById($id, array $with = [])
@@ -59,20 +78,6 @@ abstract class AbstractEloquentRepository {
     $query = $this->make($with);
 
     return $query->find($id);
-  }
-
-  /**
-   * Return all entities that have a required relationship
-   *
-   * @param string $relation
-   * @param array $with
-   *
-   */
-  public function has($relation, array $with = [])
-  {
-    $entity = $this->make($with);
-
-    return $entity->has($relation)->get();
   }
 
   /**
