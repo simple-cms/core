@@ -32,6 +32,8 @@ return [
   'missing' => 'You\'ve not created any :model yet, :link to create one now.',
   // Editing string
   'editing' => 'Editing :model: :name',
+  // None, for example when showing a Blog Post's Category where none has been provided
+  'none' => 'None',
 
   'dashboard' => 'Dashboard',
   'list' => 'List',
