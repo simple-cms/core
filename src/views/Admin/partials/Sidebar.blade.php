@@ -1,5 +1,4 @@
 <aside class="left-side sidebar-offcanvas">
-  <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <div class="user-panel">
       <div class="pull-left image">
@@ -10,7 +9,6 @@
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
-    <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="active">
         <a href="#">
@@ -32,7 +30,11 @@
           <i class="fa fa-file-text"></i> <span>Pages</span>
         </a>
       </li>
+      <li>
+        <a href="{{ route('control.asset.index') }}">
+          <i class="fa fa-paperclip"></i> <span>Assets</span>
+        </a>
+      </li>
     </ul>
   </section>
-  <!-- /.sidebar -->
 </aside>

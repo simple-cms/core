@@ -38,5 +38,7 @@ return [
   'dashboard' => 'Dashboard',
   'list' => 'List',
   'save' => 'Save',
+  'visible' => 'Visible',
+  'hidden' => 'Hidden',
 
 ];
