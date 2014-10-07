@@ -11,7 +11,7 @@
     </div>
     <ul class="sidebar-menu">
       <li class="active">
-        <a href="#">
+        <a href="{{ route('dashboard') }}">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
       </li>
