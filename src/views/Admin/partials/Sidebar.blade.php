@@ -31,7 +31,7 @@
         </a>
       </li>
       <li>
-        <a href="{{ route('control.asset.index') }}">
+        <a href="{{ url() .'/control/assets' }}">
           <i class="fa fa-paperclip"></i> <span>Assets</span>
         </a>
       </li>
