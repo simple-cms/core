@@ -14,7 +14,7 @@ abstract class AbstractEloquentRepository {
    * Return all entities
    *
    * @param array $with     an array of relationships to return with the entities
-   * @param array $orderBy  format: ['coumn', 'order']
+   * @param array $orderBy  format: ['column', 'order']
    *
    * @return Illuminate\Database\Eloquent\Collection
    */
@@ -27,14 +27,14 @@ abstract class AbstractEloquentRepository {
    * Returns paginated entities
    *
    * @param int $perPage    the number of entities per page
-   * @param array $with     an array of relationships to return with the dataset
-   * @param array $orderBy  format: ['coumn', 'order']
+   * @param array $with     an array of relationships to return with the data set
+   * @param array $orderBy  format: ['column', 'order']
    *
    * @return Illuminate\Pagination\Paginator
    */
-  public function paginate($perPage = '15', array $with =[], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
+  public function paginate($perPage = 15, array $with =[], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
   {
-    return $this->model->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage);
+    return $this->make($with)->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage);
   }
 
   /**
@@ -42,7 +42,7 @@ abstract class AbstractEloquentRepository {
    *
    * @param string $key     the column name to search
    * @param string $value   the value to search for
-   * @param array $with     an array of relationships to return with the dataset
+   * @param array $with     an array of relationships to return with the data set
    *
    * @return Illuminate\Database\Eloquent\Collection
    */
@@ -56,21 +56,21 @@ abstract class AbstractEloquentRepository {
    *
    * @param string $key     the column name to search
    * @param string $value   the value to search for
-   * @param array $with     an array of relationships to return with the dataset
-   * @param array $orderBy  format: ['coumn', 'order']
+   * @param array $with     an array of relationships to return with the data set
+   * @param array $orderBy  format: ['column', 'order']
    *
    * @return Illuminate\Database\Eloquent\Collection
    */
   public function getManyBy($key, $value, array $with = [], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
   {
-    return $this->make($with)->where($key, '=', $value)->get();
+    return $this->make($with)->where($key, '=', $value)->orderBy($orderBy['column'], $orderBy['order'])->get();
   }
 
   /**
    * Find an entity by it's ID
    *
    * @param int $id       the entity ID
-   * @param array $with   an array of relationships to return with the dataset
+   * @param array $with   an array of relationships to return with the data set
    *
    */
   public function getById($id, array $with = [])
@@ -169,7 +169,7 @@ abstract class AbstractEloquentRepository {
 
 
   /**
-   * Returns an array of entities to be used in a relationship <select> dropdown
+   * Returns an array of entities to be used in a relationship <select> drop down
    *
    * @param  string $valueField   the name of the field to be used as text
    *
