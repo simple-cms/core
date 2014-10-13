@@ -1,6 +1,9 @@
 {
     "name": "simple-cms/core",
     "description": "The core functionality for SimpleCMS",
+    "keywords": ["simple", "cms", "content managment system"],
+    "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Tom Green",
