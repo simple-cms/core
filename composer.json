@@ -1,6 +1,6 @@
 {
     "name": "simple-cms/core",
-    "description": "",
+    "description": "The core functionality for SimpleCMS",
     "authors": [
         {
             "name": "Tom Green",
