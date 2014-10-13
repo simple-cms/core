@@ -22,11 +22,6 @@
       <i class="fa fa-file-text"></i>
       <span>{{ Lang::get('page::page.plural') }}</span>
     </a>
-
-    <a href="{{ route('control.asset.index') }}" class="btn btn-app">
-      <i class="fa fa-paperclip"></i>
-      <span>{{ Lang::get('asset::asset.plural') }}</span>
-    </a>
   </section>
 </aside>
 

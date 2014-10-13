@@ -30,11 +30,6 @@
           <i class="fa fa-file-text"></i> <span>Pages</span>
         </a>
       </li>
-      <li>
-        <a href="{{ url() .'/control/assets' }}">
-          <i class="fa fa-paperclip"></i> <span>Assets</span>
-        </a>
-      </li>
     </ul>
   </section>
 </aside>
