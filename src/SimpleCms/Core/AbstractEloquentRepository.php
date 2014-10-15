@@ -111,11 +111,11 @@ abstract class AbstractEloquentRepository {
       $model->slug = ($input['slug'] == '') ? Str::Slug($input['title']) : Str::slug($input['slug']);
     }
 
-    // If the meta title is empty use the title, other wise use the provided meta title
+    // If the meta title is empty use the title, otherwise use the provided meta title
     $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input->meta_title;
 
-    // If the meta description is empty use the excerpt, other wise use the provided meta description
-    $model->meta_description = ($input['meta_description'] == '') ? $input['excerpt'] : $input->meta_description;
+    // If the meta description is empty use the content, otherwise use the provided meta description
+    $model->meta_description = ($input['meta_description'] == '') ? $input['content'] : $input->meta_description;
 
     // Attempt to save the model
     $model->save();
@@ -139,11 +139,11 @@ abstract class AbstractEloquentRepository {
     // Fill it with the users input
     $model->fill($input);
 
-    // If the meta title is empty use the title, other wise use the provided meta tit
+    // If the meta title is empty use the title, otherwise use the provided meta tit
     $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input['meta_title'];
 
-    // If the meta description is empty use the excerpt, other wise use the provided meta description
-    $model->meta_description = ($input['meta_description'] == '') ? $input['excerpt'] : $input['meta_description'];
+    // If the meta description is empty use the content, other wiseuse the provided meta description
+    $model->meta_description = ($input['meta_description'] == '') ? $input['content'] : $input['meta_description'];
 
     // Attempt to save the model
     $model->save();
