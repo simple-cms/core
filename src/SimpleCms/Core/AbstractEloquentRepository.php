@@ -2,92 +2,126 @@
 
 use Illuminate\Support\Str;
 
-/**
- * Our base Eloquent Repository, it provides a bunch of commonly used methods to prevent repeating code.
- *
- * Heavily inspired by the work by Philip Brown (phil.ipbrown.com) - http://culttt.com/2014/03/17/eloquent-tricks-better-repositories/
- *
- */
 abstract class AbstractEloquentRepository {
+
+  /**
+   * @var Model
+   */
+  protected $model;
+
+  /**
+   * @param null $model
+   */
+  public function __construct($model = null)
+  {
+    $this->model = $model;
+  }
+
+  /**
+   * Return a single entity by it's ID
+   *
+   * @param int $id               The ID of the entity we're looking for
+   * @param array $relationships  An array of relationships to return with the entity
+   * @param array $columns        An array of columns to return
+   *
+   */
+  public function getById($id, array $relationships = [], array $columns = ['*'])
+  {
+    // Grab the query builder
+    $model = $this->make($relationships);
+
+    // Return the entity
+    return $model->find($id, $columns);
+  }
+
+  /**
+   * Return the first single entity by a key and value
+   *
+   * @param string $key           The column to search
+   * @param string $value         The value to search for
+   * @param array $relationships  An array of relationships to return with the entity
+   * @param array $columns        An array of columns to return
+   *
+   * @return Illuminate\Database\Eloquent\Collection
+   */
+  public function getFirstBy($key, $value, array $relationships = [], array $columns = ['*'])
+  {
+    // Grab the query builder
+    $model = $this->make($relationships);
+
+    // Return the entity
+    return $model->where($key, '=', $value)->first($columns);
+  }
+
+  /**
+   * Return many entities by key value
+   *
+   * @param string $key           The column to search
+   * @param string $value         The value to search for
+   * @param array $relationships  An array of relationships to return with the entities
+   * @param array $orderBy        format: ['column', 'order']
+   * @param array $columns        An array of columns to return
+   *
+   * @return Illuminate\Database\Eloquent\Collection
+   */
+  public function getManyBy($key, $value, array $relationships = [], array $orderBy = null, array $columns = ['*'])
+  {
+    // Grab the query builder
+    $model = $this->make($relationships);
+
+    // Are we specifying an order?
+    if ($orderBy != null)
+    {
+      // Apply the ordering
+      $model->orderBy($orderBy['column'], $orderBy['order']);
+    }
+
+    // Return the entity
+    return $model->where($key, '=', $value)->get($columns);
+  }
 
   /**
    * Return all entities
    *
-   * @param array $with     an array of relationships to return with the entities
-   * @param array $orderBy  format: ['column', 'order']
+   * @param array $relationships  An array of relationships to return with the entities
+   * @param array $orderBy        format: ['column', 'order']
+   * @param array $columns        An array of columns to return
    *
    * @return Illuminate\Database\Eloquent\Collection
    */
-  public function all(array $with = [], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
+  public function all(array $relationships = [], array $orderBy = null, array $columns = ['*'])
   {
-    return $this->make($with)->orderBy($orderBy['column'], $orderBy['order'])->get();
+    // Grab the query builder
+    $model = $this->make($relationships);
+
+    // Are we specifying an order?
+    if ($orderBy != null)
+    {
+      // Apply the ordering
+      $model->orderBy($orderBy['column'], $orderBy['order']);
+    }
+
+    // Return the entities
+    return $model->get($columns);
   }
 
   /**
    * Returns paginated entities
    *
-   * @param int $perPage    the number of entities per page
-   * @param array $with     an array of relationships to return with the data set
-   * @param array $orderBy  format: ['column', 'order']
+   * @param int $perPage          The number of entities per page
+   * @param array $relationships  An array of relationships to return with the entities
+   * @param array $orderBy        format: ['column', 'order']
+   * @param array $columns        An array of columns to return
    *
    * @return Illuminate\Pagination\Paginator
    */
-  public function paginate($perPage = 15, array $with =[], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
+  public function paginate($perPage = 15, array $relationships = [], array $orderBy = null, array $columns = ['*'])
   {
-    return $this->make($with)->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage);
-  }
+    // Grab the query builder
+    $model = $this->make($relationships);
 
-  /**
-   * Search for a single entity by a key and value
-   *
-   * @param string $key     the column name to search
-   * @param string $value   the value to search for
-   * @param array $with     an array of relationships to return with the data set
-   *
-   * @return Illuminate\Database\Eloquent\Collection
-   */
-  public function getFirstBy($key, $value, array $with = [])
-  {
-    return $this->make($with)->where($key, '=', $value)->first();
-  }
-
-  /**
-   * Find entities by key value
-   *
-   * @param string $key     the column name to search
-   * @param string $value   the value to search for
-   * @param array $with     an array of relationships to return with the data set
-   * @param array $orderBy  format: ['column', 'order']
-   *
-   * @return Illuminate\Database\Eloquent\Collection
-   */
-  public function getManyBy($key, $value, array $with = [], array $orderBy = ['column' => 'updated_at', 'order' => 'desc'])
-  {
-    return $this->make($with)->where($key, '=', $value)->orderBy($orderBy['column'], $orderBy['order'])->get();
-  }
-
-  /**
-   * Find an entity by it's ID
-   *
-   * @param int $id       the entity ID
-   * @param array $with   an array of relationships to return with the data set
-   *
-   */
-  public function getById($id, array $with = [])
-  {
-    $query = $this->make($with);
-
-    return $query->find($id);
-  }
-
-  /**
-   * Make a new instance of the entity to query on
-   *
-   * @param array $with
-   */
-  public function make(array $with = [])
-  {
-    return $this->model->with($with);
+    // Return the paginated entities
+    return $model->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage, $columns);
   }
 
   /**
@@ -190,6 +224,22 @@ abstract class AbstractEloquentRepository {
 
     //Return the array
     return $entityArray;
+  }
+
+  /**
+   * Sets up our Eloquent query builder object
+   *
+   * @param array $relationships An array of relationships to grab with the entities
+   *
+   * @return Illuminate\Database\Eloquent\Builder
+   */
+  protected function make(array $relationships = [])
+  {
+    // Grab the model
+    $model = $this->model;
+
+    // Grab any relationships we require
+    return $this->with($relationships);
   }
 
 }
