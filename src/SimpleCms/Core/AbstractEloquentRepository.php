@@ -173,7 +173,7 @@ abstract class AbstractEloquentRepository {
     // Fill it with the users input
     $model->fill($input);
 
-    // If the meta title is empty use the title, otherwise use the provided meta tit
+    // If the meta title is empty use the title, otherwise use the provided meta title
     $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input['meta_title'];
 
     // If the meta description is empty use the content, other wiseuse the provided meta description
