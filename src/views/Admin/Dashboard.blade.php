@@ -8,12 +8,12 @@
   </section>
 
   <section class="content">
-    <a href="{{ route('control.post.index') }}" class="btn btn-app">
+    <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.index') }}" class="btn btn-app">
       <i class="fa fa-envelope"></i>
       <span>{{ Lang::get('blog::post.plural') }}</span>
     </a>
 
-    <a href="{{ route('control.category.index') }}" class="btn btn-app">
+    <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index') }}" class="btn btn-app">
       <i class="fa fa-envelope"></i>
       <span>{{ Lang::get('blog::category.plural') }}</span>
     </a>

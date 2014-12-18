@@ -1,7 +1,7 @@
 <?php
 
 //Admin routes
-Route::group(['prefix' => 'control'], function()
+Route::group(['prefix' => Config::get('core::adminURL')], function()
 {
   //Dashboard
   Route::get('/', ['as' => 'dashboard', function()
