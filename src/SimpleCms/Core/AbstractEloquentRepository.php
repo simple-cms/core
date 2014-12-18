@@ -239,7 +239,7 @@ abstract class AbstractEloquentRepository {
     $model = $this->model;
 
     // Grab any relationships we require
-    return $this->with($relationships);
+    return $model->with($relationships);
   }
 
 }
