@@ -26,7 +26,7 @@
         </ul>
       </li>
       <li>
-        <a href="{{ route('control.page.index') }}">
+        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('page::pageURL') .'.index') }}">
           <i class="fa fa-file-text"></i> <span>Pages</span>
         </a>
       </li>
