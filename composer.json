@@ -1,26 +1,29 @@
 {
-    "name": "simple-cms/core",
-    "description": "The core functionality for SimpleCMS",
-    "keywords": ["simple", "cms", "content managment system"],
-    "license": "MIT",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Tom Green",
-            "email": "tom@beingtomgreen.com"
-        }
+  "name": "simple-cms/core",
+  "description": "The core functionality for SimpleCMS",
+  "keywords": ["simple", "cms", "content managment system"],
+  "license": "MIT",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Tom Green",
+      "email": "tom@beingtomgreen.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/support": "5.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "autoload": {
+    "classmap": [
+      "src/migrations"
     ],
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "5.*"
-    },
-    "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
-        "psr-0": {
-            "SimpleCms\\Core\\": "src/"
-        }
-    },
-    "minimum-stability": "dev"
+    "psr-0": {
+      "SimpleCms\\Core\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
 }
