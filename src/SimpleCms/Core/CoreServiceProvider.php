@@ -30,7 +30,7 @@ class CoreServiceProvider extends ServiceProvider {
    */
   public function register()
   {
-    //
+    $this->app->instance('ContentProviderService', new ContentProviderService);
   }
 
   /**
