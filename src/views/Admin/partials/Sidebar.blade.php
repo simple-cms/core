@@ -21,12 +21,12 @@
           <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Posts</a></li>
-          <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+          <li><a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Posts</a></li>
+          <li><a href="{{ route(Config::get('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
         </ul>
       </li>
       <li>
-        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('page::pageURL') .'.index') }}">
+        <a href="{{ route(config('core.adminURL') .'.'. config('page.pageURL') .'.index') }}">
           <i class="fa fa-file-text"></i> <span>Pages</span>
         </a>
       </li>

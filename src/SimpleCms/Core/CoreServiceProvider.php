@@ -18,8 +18,19 @@ class CoreServiceProvider extends ServiceProvider {
    */
   public function boot()
   {
-    $this->package('simple-cms/core');
+    // Register our package views
+    $this->loadViewsFrom('core', __DIR__.'/../../views');
 
+    // Register our package translation files
+    $this->loadTranslationsFrom('core', __DIR__.'/../../lang');
+
+    // Register the files our package should publish
+    $this->publishes([
+      // Publish our views
+      __DIR__.'/../../views' => base_path('resources/views/vendor/core'),
+      // Publish our config
+      __DIR__.'/../../config/core.php' => config_path('core.php'),
+    ]);
     require __DIR__.'/../../routes.php';
   }
 
