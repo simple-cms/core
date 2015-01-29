@@ -22,7 +22,7 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Posts</a></li>
-          <li><a href="{{ route(Config::get('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
+          <li><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
         </ul>
       </li>
       <li>
