@@ -120,8 +120,15 @@ abstract class AbstractEloquentRepository {
     // Grab the query builder
     $model = $this->make($relationships);
 
+    // Are we specifying an order?
+    if ($orderBy != null)
+    {
+      // Apply the ordering
+      $model->orderBy($orderBy['column'], $orderBy['order']);
+    }
+
     // Return the paginated entities
-    return $model->orderBy($orderBy['column'], $orderBy['order'])->paginate($perPage, $columns);
+    return $model->paginate($perPage, $columns);
   }
 
   /**
