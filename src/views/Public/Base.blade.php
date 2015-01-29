@@ -12,6 +12,7 @@
     <!-- Le styles -->
     <link rel="stylesheet" href="{{ url() }}/assets/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url() }}/assets/public/css/main.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
 
   <body>
