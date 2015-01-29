@@ -7,15 +7,11 @@
     <meta name="description" content="{{ $metaDesciption }}">
 
     <!-- Open Graph Protocol -->
-    <meta property='og:title' content='{{ $metaTitle }}' />
-    <meta property='og:description' content='{{ $metaDesciption }}' />
-    <meta property='og:site_name' content='' />
-    <meta property='og:type' content='' />
-    <meta property='og:url' content='{{ url() }}' />
-    <meta property='og:image' content='' />
+    @include('core::Public.Partials.Open-Graph-Protocol')
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="{{ url() }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url() }}/assets/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url() }}/assets/public/css/main.css">
   </head>
 
   <body>
