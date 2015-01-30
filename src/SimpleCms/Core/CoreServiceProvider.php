@@ -19,10 +19,10 @@ class CoreServiceProvider extends ServiceProvider {
   public function boot()
   {
     // Register our package views
-    $this->loadViewsFrom('core', __DIR__.'/../../views');
+    $this->loadViewsFrom(__DIR__.'/../../views', 'core');
 
     // Register our package translation files
-    $this->loadTranslationsFrom('core', __DIR__.'/../../lang');
+    $this->loadTranslationsFrom(__DIR__.'/../../lang', 'core');
 
     // Register the files our package should publish
     $this->publishes([
