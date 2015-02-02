@@ -41,4 +41,8 @@ return [
   'visible' => 'Visible',
   'hidden' => 'Hidden',
 
+  // Help Text
+  'helpTitle' => 'The title should be used to give a brief description of what the :model is about.',
+  'helpExcerpt' => 'The excerpt should be used to give a more detailed description of what the :model is about.',
+  'helpContent' => 'This is the content the of the :model.',
 ];

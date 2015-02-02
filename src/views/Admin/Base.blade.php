@@ -77,5 +77,9 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src="{{ url() }}/assets/control/js/AdminLTE/demo.js" type="text/javascript"></script>
+
+  <script>
+    $('.js-help-popover').popover()
+  </script>
   </body>
 </html>
