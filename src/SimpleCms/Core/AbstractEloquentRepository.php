@@ -153,10 +153,10 @@ abstract class AbstractEloquentRepository {
     }
 
     // If the meta title is empty use the title, otherwise use the provided meta title
-    $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input->meta_title;
+    $model->meta_title = ($input['meta_title'] == '') ? $input['title'] : $input['meta_title'];
 
     // If the meta description is empty use the content, otherwise use the provided meta description
-    $model->meta_description = ($input['meta_description'] == '') ? $input['content'] : $input->meta_description;
+    $model->meta_description = ($input['meta_description'] == '') ? $input['content'] : $input['meta_description'];
 
     // Attempt to save the model
     $model->save();
