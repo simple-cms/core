@@ -25,6 +25,15 @@
           <li><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
         </ul>
       </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-question"></i> <span>FAQs</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route(config('core.adminURL') .'.'. config('faq.faqURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> FAQs</a></li>
+        </ul>
+      </li>
       <li>
         <a href="{{ route(config('core.adminURL') .'.'. config('page.pageURL') .'.index') }}">
           <i class="fa fa-file-text"></i> <span>Pages</span>
