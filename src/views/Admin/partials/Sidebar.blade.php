@@ -25,6 +25,11 @@
           <li><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}"><i class="fa fa-angle-double-right"></i> Categories</a></li>
         </ul>
       </li>
+      <li>
+        <a href="{{ route(config('core.adminURL') .'.'. config('page.pageURL') .'.index') }}">
+          <i class="fa fa-file-text"></i> <span>Pages</span>
+        </a>
+      </li>
     </ul>
   </section>
 </aside>
